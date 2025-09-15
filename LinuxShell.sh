@@ -192,7 +192,9 @@ echo $someString | tail -c5			# output a string from tail take character upto 5,
 head -n <no. of lines>				(# view file with defined number of lines from top of file)
 tail -n <no. of lines>				(# view file with defined number of line from bottom of a file)
 tail -n +3
-tail -n -1							(# capture last line)						
+tail -n -1							(# capture last line)
+tail -f /path/to/logfile			(monitor log in real time)
+tail -f /path/to/logfile | grep "keyword"	(monitor log in real time and search keyword)
 head -n 20 file_name | tail -n 10	(# get first 20 lines and then take its 10 bottom) 
 
 ${AWK}
