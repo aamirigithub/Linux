@@ -6,27 +6,27 @@ What is "command /dev/null 2>&1 means" --> any output of command will go to null
 > redirect the program’s output somewhere (In this case, something is being redirected into /dev/null)
 Standard in, out and err are buit-in numbered 0, 1, and 2 in Linux / STDIN=0, STDOUT=1, STDERR=2
 
-!$                                           # recall previously run command
-!<>                                          # to repeat command from history
-sudo !!                                      # repeat previously run command with sudo privileges
-su -c "!!"                                   # repeat previously run command with sudo privileges
-#] prompt                                    # you are executing commands as root
-~] prompt                                    # current working directory of user
-;                                            # used for multiple commands
-ls ; df                                      # two commands run one after another
-ls ; df ; ll                                 # three commands will run one after another
-.                                            # hidden files, add . if want to hide a file
-touch .abc                                   # create a hidden file with name abc
-touch <fileName>                             # Create an empty file
-\                                            # continuity of command
+!$                                                   # recall previously run command
+!<>                                                  # to repeat command from history
+sudo !!                                              # repeat previously run command with sudo privileges
+su -c "!!"                                           # repeat previously run command with sudo privileges
+#] prompt                                            # you are executing commands as root
+~] prompt                                            # current working directory of user
+;                                                    # used for multiple commands
+ls ; df                                              # two commands run one after another
+ls ; df ; ll                                         # three commands will run one after another
+.                                                    # hidden files, add . if want to hide a file
+touch .abc                                           # create a hidden file with name abc
+touch <fileName>                                     # Create an empty file
+\                                                    # continuity of command
 \n
 ',\n'
 help        <command>                        # print short man page
-man <command>                                         # prints long description of command
+man <command>                                # prints long description of command
 help [[
-type <command>                                        # line description of command
-whatis <command>                                # short line description
-apropos        <keyword>                                # search man pages for certain keyword
+type <command>                               # line description of command
+whatis <command>                             # short line description
+apropos        <keyword>                     # search man pages for certain keyword
 apropos bash
 
 ${Using Tab}
