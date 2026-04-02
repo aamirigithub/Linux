@@ -1,6 +1,737 @@
-Use Python - fruit 
+{----------------- Course Outline Essentials of Systems Engineer/Administrator ----------------
+https://training.linuxfoundation.org/certification
+You can see how LFS201 matches up with the domains and competencies tested in the LFCS exam with this downloadable content outline.
+${LFCS}
+Preface
+Introduction
+Relationship to LFS101x
+Using as LFCS Exam Preparation
+Course Formatting
+Read the Documentation
+Target Platform
+Command Line vs Graphical Interface
+Target Linux Distributions
+Installation: What to Use for this Course
+Course Timing
+Lab Exercises
+Change, Repetition, and Holy Wars
+The Linux Foundation
+Linux Foundation Training
+Labs
+System Startup and Shutdown
+Understanding the Boot Sequence
+BIOS
+Boot Loaders
+Configuration Files in /etc
+/etc/sysconfig
+/etc/default
+Shutting Down and Rebooting
+Labs
+GRUB
+What is GRUB?
+Interactive Selections with GRUB at Boot
+Installing GRUB
+GRUB Device Nomenclature
+Customizing the GRUB Configuration File
+Labs
+init: SystemV, Upstart, systemd
+The init Process
+Startup Alternatives
+SysVinit Runlevels
+SysVinit and /etc/inittab
+SysVinit Startup Scripts
+chkconfig
+service
+chkconfig and service on Debian-based Systems
+Upstart
+Upstart Utilities
+systemd
+systemd Configuration Files
+Systemctl
+Labs
+Linux Filesystem Tree Layout
+One Big Filesystem
+Data Distinctions
+FHS Linux Standard Directory Tree
+Main Directory Layout
+The root (/) Directory and Filesystem
+/bin
+/boot
+Other Files and Directories in /boot
+/dev
+/etc
+/home
+/lib
+/media
+/mnt
+/opt
+/proc
+/sys
+/root
+/sbin
+/tmp
+/usr
+/var
+/run
+Labs
+Kernel Services and Configuration
+Kernel Overview
+Main Kernel Tasks
+Kernel Command Line
+Kernel Boot Parameters
+sysctl
+Labs
+Kernel Modules
+Advantages of Kernel Modules
+Module Utilities
+Module Loading and Unloading
+modprobe
+Some Considerations with Modules
+modinfo
+Module Parameters
+Kernel Module Configuration
+Labs
+Devices and udev
+Device Nodes
+Major and Minor Numbers
+udev
+udev Components
+udev and Hotplug
+The udev Device Manager
+udev Rule Files
+Creating udev Rules
+Some Examples of Rules Files
+Labs
+Partitioning and Formatting Disks
+Common Disk Types
+Disk Geometry
+Partitioning
+Why partition?
+Partition Table
+Naming Disk Devices and Nodes
+More on SCSI Device Names
+blkid and lsblk
+Sizing up partitions
+Backing up and Restoring Partition Tables
+Partition table editors
+Using fdisk
+Labs
+Encrypting Disks
+Why Use Encryption?
+LUKS
+cryptsetup
+Using an Encrypted Partition
+Mounting at Boot
+Labs
+Linux Filesystems and the VFS
+Filesystem Basics
+Filesystem Tree Organization
+Virtual File System (VFS)
+Available Filesystems
+Journalling Filesystems
+Current Filesystem Types
+Special Filesystems
+Labs
+Filesystem Features: Attributes, Creating, Checking, Mounting
+Inodes
+Directory Files
+Extended Attributes and lsattr/chattr
+Creating and Formatting Filesystems
+Checking and Fixing Filesystems
+Mounting and Unmounting Filesystems
+mount
+mount Options
+umount
+Mounting Filesystems at Boot
+Listing Currently Mounted Filesystems
+Labs
+Filesystem Features: Swap, Quotas, Usage
+Swap
+Quotas
+Setting up Quotas
+quotacheck
+Turning quotas on and off
+Examining Quotas
+Setting quotas
+Filesystem Usage
+Disk Space Usage
+Labs
+The Ext2/Ext3/Ext4 Filesystems
+Ext4 History and Basics
+Ext4 Features
+Ext4 Layout
+Block Groups
+dumpe2fs
+tune2fs
+Superblock Information
+Data Blocks and Inodes
+Ext4 Filesystem Enhancements
+Labs
+The XFS and btrfs Filesystems
+XFS Features
+XFS Filesystem Maintenance
+The btrfs Filesystem
+Labs
+Logical Volume Management (LVM)
+LVM
+LVM and RAID
+Volumes and Volume Groups
+Logical Volumes Utilities
+Creating Logical Volumes
+Displaying Logical Volumes
+Resizing Logical Volumes
+Examples of Resizing
+LVM Snapshots
+Labs
+RAID
+RAID Levels
+Software RAID Configuration
+Monitoring RAIDs
+RAID Hot Spares
+Labs
+Local System Security
+Creating a Security Policy
+What to Include in the Policy
+What Risks to Assess
+Choosing a Security Philosophy
+Some General Security Guidelines
+Updates and Security
+Hardware Accessibility and Vulnerability
+Hardware Access Guidelines
+Protection of BIOS
+Protecting the Boot Loader with Passwords
+Filesystem Security: mount Options
+setuid and setgid
+Setting the setuid/setgid Bits
+Labs
+Linux Security Modules
+What are Linux Security Modules?
+LSM Choices
+SELinux Overview
+SELinux Modes
+SELinux Policies
+Context Utilities
+SELinux and Standard Command Line Tools
+SELinux Context Inheritance and Preservation
+restorecon
+semanage fcontext
+Using SELinux Booleans
+getsebool and setsebool
+Troubleshooting Tools
+Additional Online Resources
+AppArmor
+Labs
+Processes
+Processes, Programs and Threads
+The init Process
+Processes
+Process Attributes
+Controlling Processes with ulimit
+Process Permissions and setuid
+Process States
+Execution Modes
+User Mode
+System Mode
+Daemons
+Kernel-Created Processes
+Process Creating and Forking
+Creating Processes in a Command Shell
+Using nice to Set Priorities
+Modifying the Nice Value
+Labs
+Signals
+What are Signals?
+Types of Signals
+kill
+killall and pkill
+Labs
+System Monitoring
+Available Monitoring Tools
+The /proc and /sys Pseudo-filesystems
+/proc Basics
+A Survey of /proc
+/proc/sys
+/sys Basics
+A Survey of /sys
+sar
+Labs
+Process Monitoring
+Monitoring Tools
+Viewing Process States with ps
+BSD Option Format for ps
+ps Output Fields
+UNIX Option Format for ps
+Customizing the ps Output
+Using pstree
+Viewing System Loads with top
+top Options
+Labs
+I/O Monitoring and Tuning
+Disk Bottlenecks
+iostat
+iostat Options
+iostat Extended Options
+iotop
+Using ionice to Set I/O Priorities
+Labs
+I/O Scheduling
+I/O Scheduling
+I/O Scheduler Choices
+I/O Scheduling and SSD Devices
+Tunables and Switching The I/O Scheduler at Run Time
+CFQ (Completely Fair Queue Scheduler)
+CFQ Tunables
+Deadline Scheduler
+Deadline Tunables
+Labs
+Memory: Monitoring Usage and Tuning
+Memory Tuning Considerations
+Memory Monitoring Tools
+/proc/sys/vm
+vmstat
+/proc/meminfo
+OOM Killer
+Labs
+Package Management Systems
+Software Packaging Concepts
+Why Use Packages?
+Packages Types
+Available Package Management Systems
+Packaging Tool Levels and Varieties
+Package Sources
+Creating Software Packages
+Labs
+RPM
+RPM
+Advantages of Using RPM
+Package File Names
+Database Directory
+Helper Programs and Modifying Settings
+Queries
+Verifying Packages
+Installing Packages
+Uninstalling Packages
+Upgrading Packages
+Freshening Packages
+Upgrading the Kernel
+Using rpm2cpio
+Labs
+DPKG
+DPKG Essentials
+Package File Names
+Source Packages
+DPKG Queries
+Installing/Upgrading/Uninstalling Packages
+Labs
+yum
+Package Installers
+What Is yum?
+Configuring yum to Use Repositories
+Repository Files
+Queries
+Verifying Packages
+Installing/Removing/Upgrading Packages
+Additional Commands
+Labs
+zypper
+What Is zypper?
+zypper Queries
+Installing/Removing/Upgrading
+Additional zypper Commands
+Labs
+APT
+What Is APT?
+apt-get
+Queries Using apt-cache
+Installing/Removing/Upgrading
+Labs
+User Account Management
+User Accounts
+Attributes of a User Account
+Creating User Accounts with useradd
+Modifying and Deleting User Accounts
+Locked Accounts
+User IDs and /etc/passwd
+/etc/shadow
+Why Use /etc/shadow?
+Password Management
+chage: Password Aging
+Restricted shell
+Restricted Accounts
+The root Account
+SSH
+ssh Configuration Files
+Labs
+Group Management
+Groups
+Group Management
+User Private Groups
+Group Membership
+Labs
+File Permissions and Ownership
+Owner, Group and World
+File Access Rights
+File Permissions and Security and Authentication
+Changing permissions: chmod
+chmod: Numerical Syntax for Permissions
+Changing User and Group File Ownership: chown and chgrp
+umask
+Filesystem ACLs
+Getting and Setting ACLs
+Labs
+Pluggable Authentication Modules (PAM)
+PAM: A Unified Approach to Authentication
+Authentication Process
+PAM Configuration Files
+PAM Rules
+LDAP Authentication
+Labs
+Backup and Recovery Methods
+Why Backups?
+What Needs Backup?
+Tape Drives
+Backup Methods
+Backup Strategies
+Backup Utilities
+cpio
+Using tar for Backups
+Using tar for Restoring Files
+Incremental Backups with tar
+Compression: gzip, bzip2 and xz and Backups
+dd
+dd Examples
+rsync
+dump and restore
+dump Options
+Level 0 backup with dump
+restore
+mt
+Backup Programs
+Labs
+Network Addresses
+IP Addresses
+IPv4 Address Types
+Special Addresses
+IPv6 Address Types
+IPv4 Address Classes
+Netmasks
+Hostname
+Getting and Setting the Hostname
+Labs
+Network Devices and Configuration
+Network Devices
+Problems with Network Device Names
+Predictable Network Interface Device Names
+Examples of the New Naming Scheme
+NIC Configuration Files
+ifconfig
+The ip Utility
+Examples of Using ip
+Routing
+Default Route
+Static Routes
+Name Resolution
+/etc/hosts
+DNS
+Network Diagnostic Utilities
+Labs
+Firewalls
+What is a Firewall
+Firewall Interfaces and Tools
+firewalld
+firewalld Service Status
+Zones
+Zone Management
+Source Management
+Service and Port Management
+Labs
+Basic Troubleshooting
+Troubleshooting Overview
+Basic Techniques
+Intuition and Experience
+Things to Check: Networking
+Things to Check: File Integrity
+Boot Process Failures
+Filesystem Corruption and Recovery
+Using Rescue/Recovery Media
+Common Utilities on Rescue/Recovery Disks
+Using Rescue/Recovery Media
+Labs
+System Rescue
+Emergency Boot Media
+Using Rescue Media
+Rescue USB Key
+Emergency Mode
+Single User Mode
+Labs
+Close
+${LFCE}
+Network administration
 
+Configure network services to start automatically at boot
+Implement packet filtering
+Monitor network performance
+Produce and deliver reports on system use, outages and user requests
+Route IP traffic statically and dynamically
+Troubleshoot network issues
+Network filesystems and file services
 
+Configure systems to mount standard, encrypted and network file systems on demand
+Create, mount and unmount standard Linux file systems
+Provide/configure network shares via NFS
+Transfer files securely via the network
+Update packages from the network, a repository or the local file system
+Network security
+
+Configure Apache log files
+Configure the firewall with iptables
+Install and configure SSL with Apache
+Configuring SSH-based remote access using public/private key pairs
+Remote access
+
+Configure the firewall with iptables
+HTTP services
+
+Configure an http client to automatically use a proxy server
+Install and configure an Apache web server
+Install and configure the Squid proxy server
+Restrict access to a web page with Apache
+Restrict access to the Squid proxy server
+Setting up name-based virtual web hosts
+Email services
+
+Configure email aliases
+Install and configure an IMAP and IMAPS service
+Install and configure an smtp service
+Restrict access to an smtp server
+
+ }
+
+{----------------- Linux Commands -------------------------
+accessdb                        mkhomedir_helper
+add-shell                      mklost+found
+addgroup                        mkswap
+addpart                         modinfo
+adduser                         modprobe
+agetty                          mountpoint
+apropos                         mt-gnu
+apt                             namei
+apt-cache                       ncal
+apt-cdrom                       ncurses5-config
+apt-config                      ncursesw5-config
+apt-extracttemplates            neqn
+apt-ftparchive                  networkctl
+apt-get                         newusers
+apt-key                         nisdomainname
+apt-mark                        nologin
+apt-sortpkgs                    nproc
+aptitude-create-state-bundle    nroff
+aptitude-curses                 nsenter
+aptitude-run-state-bundle       nstat
+arch                            numfmt
+arpd                            oldfind
+badblocks                       ownership
+base64                          pam-auth-update
+bash                            pam_getenv
+bashbug                         pam_tally
+biosdecode                      pam_tally2
+blkdiscard                      pam_timestamp_check
+blkid                           partx
+blockdev                        perl
+bootctl                         perl5.20.2
+bridge                          pg
+bsd-from                        pgrep
+bsd-write                       pic
+busctl                          ping
+cal                             ping6
+calendar                        pinky
+captoinfo                       pivot_root
+catchsegv                       pkill
+catman                          pldd
+cfdisk                          pmap
+chage                           poweroff
+chattr                          preconv
+chcon                           printenv
+chcpu                           printerbanner
+chgpasswd                       prlimit
+chpasswd                        ptx
+chroot                          pwck
+chrt                            pwconv
+clear                           pwdx
+clear_console                   pwunconv
+colcrt                          raw
+colrm                           rbash
+column                          readlink
+cpgr                            readprofile
+cppw                            realpath
+cron                            reboot
+ctrlaltdel                      remove-shell
+ctstat                          rename.ul
+dash                            reset
+debconf                         resize2fs
+debconf-apt-progress            resizepart
+debconf-communicate             rev
+debconf-copydb                  rgrep
+debconf-escape                  rmmod
+debconf-set-selections          rmt-tar
+debconf-show                    routef
+debugfs                         routel
+delgroup                        rsyslogd
+delpart                         rtacct
+deluser                         rtcwake
+depmod                          rtmon
+dhclient                        rtstat
+dhclient-script                 run-parts
+diff3                           runcon
+dir                             runlevel
+dircolors                       runuser
+dmidecode                       savelog
+dnsdomainname                   script
+domainname                      scriptreplay
+dpkg                            sdiff
+dpkg-deb                        select-editor
+dpkg-divert                     sensible-browser
+dpkg-maintscript-helper         sensible-editor
+dpkg-preconfigure               sensible-pager
+dpkg-query                      service
+dpkg-reconfigure                setarch
+dpkg-split                      setsid
+dpkg-statoverride               setterm
+dpkg-trigger                    sfdisk
+dumpe2fs                        sg
+e2freefrag                      sha1sum
+e2fsck                          sha224sum
+e2image                         sha256sum
+e2label                         sha384sum
+e2undo                          sha512sum
+e4defrag                        shadowconfig
+eqn                             shred
+expiry                          shuf
+factor                          skill
+faillog                         slabtop
+fallocate                       snice
+fdformat                        soelim
+fdisk                           ss
+filefrag                        start-stop-daemon
+findfs                          stat
+findmnt                         stdbuf
+flock                           sulogin
+fmt                             sum
+free                            swaplabel
+fsck                            swapoff
+fsck.cramfs                     swapon
+fsck.ext2                       switch_root
+fsck.ext3                       sysctl
+fsck.ext4                       systemctl
+fsck.ext4dev                    systemd
+fsck.minix                      systemd-analyze
+fsck.nfs                        systemd-ask-password
+fsfreeze                        systemd-cat
+fstab-decode                    systemd-cgls
+fstrim                          systemd-cgtop
+geqn                            systemd-delta
+getent                          systemd-detect-virt
+getopt                          systemd-escape
+getty                           systemd-hwdb
+gpasswd                         systemd-inhibit
+gpg                             systemd-machine-id-setup
+gpg-zip                         systemd-notify
+gpgsplit                        systemd-path
+gpgv                            systemd-run
+gpic                            systemd-stdio-bridge
+groff                           systemd-tmpfiles
+grog                            systemd-tty-ask-password-agent
+grops                           tabs
+grotty                          tac
+grpck                           tailf
+grpconv                         tarcat
+grpunconv                       taskset
+gtbl                            tbl
+gzexe                           tc
+halt                            tcptraceroute.db
+hd                              telinit
+helpztags                       tempfile
+hexdump                         timedatectl
+hostid                          timeout
+hostnamectl                     tload
+hwclock                         toe
+i386                            top
+iconvconfig                     traceproto.db
+ifdown                          traceroute-nanog
+ifquery                         traceroute.db
+ifup                            traceroute6.db
+infotocap                       troff
+init                            truncate
+insmod                          tset
+installkernel                   tune2fs
+invoke-rc.d                     tunelp
+ionice                          tzconfig
+ip                              tzselect
+ipcmk                           udevadm
+ischroot                        ul
+isosize                         uncompress
+journalctl                      unix_chkpwd
+killall5                        unix_update
+kmod                            unlink
+last                            unshare
+lastb                           unxz
+lastlog                         update-alternatives
+ldattach                        update-passwd
+ldconfig                        update-rc.d
+ldconfig.real                   uptime
+ldd                             users
+less                            utmpdump
+lessecho                        vdir
+lessfile                        vigr
+lesskey                         vim.tiny
+lesspipe                        vipw
+lexgrog                         vmstat
+lft.db                          vpddecode
+line                            w.procps
+link                            wall
+linux32                         watch
+linux64                         wdctl
+lnstat                          wget
+localectl                       whatis
+login                           whereis
+loginctl                        which
+logrotate                       whiptail
+logsave                         who
+look                            whoami
+lorder                          wipefs
+losetup                         x86_64
+lsattr                          xxd
+lsblk                           xz
+lscpu                           xzcat
+lsipc                           xzcmp
+lslocks                         xzdiff
+lslogins                        xzegrep
+lsmod                           xzfgrep
+lspgpot                         xzgrep
+lzmainfo                        xzless
+mandb                           xzmore
+manpath                         yes
+mawk                            ypdomainname
+mcookie                         zcmp
+md5sum.textutils                zdiff
+mesg                            zdump
+mke2fs                          zegrep
+mkfs                            zfgrep
+mkfs.bfs                        zforce
+mkfs.cramfs                     zgrep
+mkfs.ext2                       zic
+mkfs.ext3                       zless
+mkfs.ext4                       zmore
+mkfs.ext4dev                    znew
+mkfs.minix                      zramctl
+ 
+/bin : For binaries usable before the /usr partition is mounted. This is used for trivial binaries used in the very early boot stage or ones that you need to have available in booting single-user mode. Think of binaries like cat, ls, etc.
+/sbin : Same, but for scripts with superuser (root) privileges required.
+/usr/bin : Same as first, but for general system-wide binaries.
+/usr/sbin : Same as above, but for scripts with superuser (root) privileges required.
+ }
+
+ 
 ${File and Edit}
 What is "command /dev/null 2>&1 means" --> any output of command will go to null STDOUT box and error to STDERR box 
 > redirect the program’s output somewhere (In this case, something is being redirected into /dev/null)
