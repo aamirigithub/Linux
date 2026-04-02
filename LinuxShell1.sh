@@ -813,7 +813,565 @@ echo `expr "$stringZ" : '.*\(......\)'`                       # ABCabc
 
 }
 
+ { Linux Everyday CLIF
+${File and Edit}	
+<space>command 						(# Execute a command without saving it in history )
+ls -l (ls -ltr or ll)					(# Permissions, Number of hardlinks, File owner, File group, File size, Modification)
+ls -i								(# to get the inodes of each file)
+ls -F								(# shows the file type)
+ll -hisF							(# interesting result)
+ll -hisFa --author	
+ll -hisFaX	
+Time	
+Filename)	
+Reset	(# restart the terminal session)
+echo "ls -l" | at midnight			(# execute a command at given time)
+cat -s -n fileNameHere				(# output a file with line number and eliminate blanks)
+zcat <filename>						(# view a zip file, *.gz)
+column fileNameHere					(# long out in columns)
+Sort	
+sort -u								(# sort to unique values)
+$ uniq 	# 
+nl filename							(# replacement of CAT, eleminate blank lines)
+sed -n '20,40p' file_name			(# show a file between line number 20 to 40)
+less 								(# view file with scroll, up and down)
+source 								(# load changes only in a file)
+more 								(# view file with page full view)
+$ zmore 	#
+$ history 	#
+$ vi /root/.bash_history				(# get the history of commands run by root)
+$ ls	Option Description 
+	-a, --all List all entries including ones that start with a dot 
+	-A, --almost-all List all entries excluding . and .. 
+	-c Sort files by change time 
+	-d, --directory List directory entries 
+	-h, --human-readable Show sizes in human readable format (i.e. K, M) 
+	-H Same as above only with powers of 1000 instead of 1024 
+	-l Show contents in long-listing format 
+	-o Long -listing format without group info 
+	-r, --reverse Show contents in reverse order 
+	-s, --size Print size of each file in blocks 
+	-S Sort by file size 
+	--sort=WORD Sort contents by a word. (i.e size, version, status) 
+	-t Sort by modification time 
+	-u Sort by last access time 
+	-v Sort by version 
+	-1 List one file per line
+
+# How to find date and timestamp against command?
+export HISTTIMEFORMAT='%F %T '		(# %F is YY - MM - DD, %T is H:M:S)
+export HISTIGNORE='ls -l:pwd:date:' 	(# fiter out by ignoring history of ls commands)
+unset export HISTCONTROL				(# Unset export command)
+.bash_profile						(# to setup a behavior or scripts for user)
+.bash_logout	
+vi ~/.bash_history					(# complete history of every command)
+history -c	 						(# delete history)
+Sar	
+chkconfig --list	
+sysctl -a	 						(# Display kernel parameters)
+diff server1.list server2.list | less			(# Comparison of two files in less)
+which <files_Name>	 
+uname -a	 
+cat /etc/redhat-release	
+Locale	 
+
+${GREP}
+
+OR Operation (|) - “subexpression1|subexpression2” 	matches either subexpression1 or subexpression2.
+[:digit:]	 			Only the digits 0 to 9
+[:alnum:] 				Any alphanumeric character 0 to 9 OR A to Z or a to z.
+[:alpha:] 				Any alpha character A to Z or a to z.
+[:blank:] 				Space and TAB characters only.
+grep -e "ntpd\[[[:digit:]]\+\]" /var/log/messages.4	
+M to N occurences ({m,n}) - 	indicates that the preceding item is matched at least m times, but not more than n times. 
+grep  "^[0-9]\{1,5\}$" number	
+Exact M occurence ({m}) - 	A Regular expression followed by {m} matches exactly m occurences of the preceding expression.
+grep  "^[0-9]\{5\}$" number	
+M or more occurences ({m,}) 	- A Regular expression followed by {m,} matches m or more occurences of the preceding expression.
+grep "[0-9]\{5,\}" number	
+Word boundary (\b) - \b is to match for a word boundary. \b matches any character(s) at the beginning (\bxx) and/or end (xx\b) of a word, thus \bthe\b will find the but not thet, but \bthe will find they.
+grep -i "\bthe\b" comments	
+Back references (\n) 	- Grouping the expressions for further use is available in grep through back-references. For ex, \([0-9]\)\1 matches two digit number in which both the digits are same number like 11,22,33 etc.
+Match the pattern “Object Oriented” 	- match “object oriented” in various formats.
+grep "OO\|\([oO]bject\( \|\-\)[oO]riented\)"	
+Print the line “vowel singlecharacter samevowel”	
+grep "\([aeiou]\).\1" input	
+
+
+# ------ Main metacharacters ------ 
+Characters	Search Match 
+\<KEY	Words beginning with ‘KEY’ 
+WORD\> 					Words ending with ‘WORD’ 
+^ 						Beginning of a line 
+$ 						End of a line 
+[ Range ] 				Range of ASCII characters enclosed 
+[^c ] 					Not the character ‘c’ 
+\[ 						Interpret character ‘[‘ literally 
+“ca*t” 					Strings containing ‘c’ followed by no 'a' or any number of the letter 'a' followed by a 't' 
+“.” 					Match any single character
+
+# ----- Extended regex -----
+The main eregex’s are: +,?,() and |
+
+# ------ List of main eregex ------ 
+Characters 		Search Match 
+"A1|A2|A3" 		Strings containing ‘A1’ or ‘A2’ or ‘A3’ 
+"ca+t" 			Strings containing a 'ca'  followed by  any number of the letter 'a' followed by a 't' 
+"ca?t" 			Strings containing ‘c’ followed by no 'a' or exactly one 'a' followed by a 't'
+
+grep 	Main Options 
+-c 		count the number of lines matching PATTERN 
+-f 		obtain PATTERN from a file 
+-i 		ignore case sensitivity 
+-n 		Include the line number of matching lines 
+-v 		output all lines except those containing PATTERN 
+-w 		Select lines only if the pattern matches a whole word.
+-o		Print only what you matched
+-P		Use Perl-style regular expressions
+-E 		tells, that you want to use extended regex
+-r 		grep is looking for result recursively in the folder
+
+grep  -v "^#\|^'\|^\/\/" comments	# search line not start with # or ' or //  
+grep --color -(i)gnore_case -(r)ecursively -(w)ord_match -(c)ount_lines -(n)umber_of_line -in(v)ert -(l)ist_file_name_only "string_to_search" <in_which_folder>
+grep "Linux" input.txt output.txt 				(# search string in more files)
+grep -i -r --color "RC4" /etc/httpd				(# find RC4 string on any file under httpd direcotry)
+grep --color "RC4" /etc/httpd					(# it will search a specific word and color out it in the output)
+grep "Options" /etc/httpd/conf/httpd.conf		(# it will search for word options in httpd.conf file)
+grep "Options" /etc/httpd/conf/httpd.conf | grep '\-Include'	
+grep -w 'space_left_action' /etc/audit/auditd.conf | grep -v "email"	(# exactly match the word)
+grep 'paul' /etc/motd | grep 'franc,ois'		(# finds all lines that contain both `paul' AND `franc,ois')
+grep 'pattern1\|pattern2' filename				(# Using OR operator | to mach either of to strings)
+grep -E 'pattern1|pattern2' filename	
+grep -e pattern1 -e pattern2 filename	
+grep -E 'pattern1.*pattern2' filename			(# There is no AND operator in grep. But, you can simulate AND using grep -E option.)
+grep -E 'pattern1.*pattern2|pattern2.*pattern1' filename	
+grep -v 'pattern1' filename						(# Using grep -v you can simulate the NOT conditions. -v option is for invert match)
+grep -e rmdir -e unlink -e 'unlinkat' -e rename -e renameat /etc/audit/audit.rules	 # using AND operation with -e 
+grep '^PASS_MIN_LEN' /etc/login.defs			(# will match exact string nothing in the begning, just to avoid commented lines with similar string)
+grep "^log_file" /etc/audit/auditd.conf|sed 's/^[^/]*//; s/[^/]*$//'| xargs stat -c %a:%n | cut -c1-3 # Cut first 3 characters from output	
+grep 'v1\|v2c\|com2sec' /etc/snmp/snmpd.conf | grep -v '^#'			(# match and find multiple strings in a file and exclude commented lines)
+grep -oP '^[^#]*NOPASSWD' /etc/sudoers			# exclude # at front of string and search for NOPASSWD
+grep -o '\<pam_faillock.so preauth silent' /etc/pam.d/system-auth		# only capture string starting from pam_faillock.so upto silent
+grep 'auth'  /etc/pam.d/system-auth | grep -oP 'requisite\K.*(?=quiet)'			# print string between 'requisite' and 'quiet'
+grep 'auth'  /etc/pam.d/system-auth | grep -oP 'requisite\K.*(?=)'				# print string between 'requisite' upto end
+grep 'auth'  /etc/pam.d/system-auth | awk -v FS="(requisite|quiet)" '{print $2}'	 # print string between 'requisite' and 'quiet'
+grep -o  '\ V-.....\ ' Scan-CAT-1.log					# match a format of V-12345
+grep '\ V-' Scan-CAT-1.log | cut -b-8 | wc -l			# match V- and take first 8
+grep '\<V-' Scan-CAT-1.log | cut -b-8 | wc -l			# match V- and take first 8
+grep -io "Chrome" /root/test.txt	
+grep -io "Chrome" /root/test.txt | wc -l	
+grep -o --color '\-p wa'						# to extract word and color it
+grep -o --color '\-p wa' | wc -l				# to extract exact word, color it and show number of time its appearance
+
+
+# ---------- Find and replace a string in a file--------------- (http://unix.stackexchange.com/questions/112023/how-can-i-replace-a-string-in-a-files)
+grep -rl string1 /somedir/fileName | xargs sed -i 's/string1/string2/g'
+grep -rl 'Options' /usr/tideway/stig.log | xargs sed -i 's/Options/NoOptions/g' (# find string Options in a file stig.log, replace it with NoOptions)
+zgrep
+shopt -s nocasematch			(# turn on the case matching)
+shopt -u nocasematch			(# turn off the case matching)
+
+# The egrep tool supports extended regular expressions eregex, The egrep utility will handle any modern regular expressions.\ 
+# It can also search for several keywords if they are entered at the command line, separated by the vertical bar character. 
+egrep 'Manager|Developer' employee.txt | grep -v Sales (# You can also combine NOT with other operator to get some powerful combinations)
+egrep -n "*" <file_name> | egrep "line_number"
+egrep 'pattern1|pattern2' filename
+egrep 'linux|^image'   /etc/lilo.conf
+egrep  '\b(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)' input		# Valid IP address
+
+# fgrep stands for fast grep and fgrep interprets strings literally (no regex or eregex support). The fgrep utility does not recognise the special meaning of the regular expressions
+fgrep 'cat*' FILE
+fgrep –f LIST FILE
+
+SERVICE
+service --status-all | grep -i httpd	
+service --status-all | grep -i httpd | grep 'is running...'	
+service --status-all | grep -i ssh | grep 'is running...'	
+
+
+${FIND}
+find <directory> <files_Name>
+find / | grep "somestring"
+find / -name somestring
+find /usr/tideway/stig.log -type f -exec sed -i 's/NoOptions/NewOptions/g' {} \;
+find . -type f -exec sed -i 's/foo/bar/g' {} +	(# replace string in regular files (including hidden ones) in this and all subdirectories)
+
+${CUT, HEAD, TAIL on string}
+someString='ABC123 XYZ:987 abc111 xyz222'
+echo $someString | cut -c1-3			# output the string and take character from 1 to 3, output: ABC
+echo $someString | cut -c8-13		# output the string and take character from 8 to 13, output: XYZ987
+echo $someString | cut -d':' -f2		# it will cut the string from colon and show rest of the string
+echo $someString | cut -d "=" -f2	# cut string after equal sign
+echo $someString | head -c3			# output the string and take character upto 3, output: ABC
+echo $someString | tail -c5			# output a string from tail take character upto 5, output: z222
+head -n <no. of lines>				(# view file with defined number of lines from top of file)
+tail -n <no. of lines>				(# view file with defined number of line from bottom of a file)
+tail -n +3
+tail -n -1							(# capture last line)
+tail -f /path/to/logfile			(monitor log in real time)
+tail -f /path/to/logfile | grep "keyword"	(monitor log in real time and search keyword)
+head -n 20 file_name | tail -n 10	(# get first 20 lines and then take its 10 bottom) 
+
+${AWK}
+# $1 is field #1, $2 is field #2, etc.
+echo one two | awk '{print $1}'		# one
+echo one two | awk '{print $2}'		# two
+echo one two | awk '{print $0}'		# one two, All the fields!
+awk '{print $3}' $filename			# Prints field #3 of file $filename to stdout.
+awk '{print $1 $5 $6}' $filename	# Prints fields #1, #5, and #6 of file $filename.
+awk '{print $0}' $filename			# Prints the entire file!
+awk '{print substr($0,1,3);exit}'	# Using substring, match first 3 characters
+awk '{print $1 $1 "1"}'				# Print output from column 1 and ends with :
+awk 'FNR>=20 && FNR<=40' file_name	# open a file and only show lines between 20 to 40
+awk 'NR==2'							# only show line no.2 out of whatever number of lines
+awk -F'package:' '{print $2}'		# find package: and after print 2nd column result
  
+
+${SED - The Stream Editor}
+# sed performs automatic, non-interactive editing of files. It is often used in scripts to search and replace patterns in text. It supports most regular expressions. 
+sed -n '/xzy/p' $filename				# The -n option tells sed to print only those lines matching the pattern. Otherwise all input lines would print.
+sed -e '/^$/d' $filename				# The -e option causes the next string to be interpreted as an editing instruction.
+sed 's/^package://'						# cut the string from package: and show rest of the string
+sed '5!d' file							# only show line no.5 out of whatever number of lines
+sed -n 2p								# only show line no.5 out of whatever number of lines
+sed -n 5,10p file						# range of line from 5 to 10
+sed -i -- 's/OldString/NewString/g' stig.log	(# it will find a file name stig.log and in it find OldString, replace with NewString)
+sed -i '4s/OldString/NewString/g' stig.log		(# Replace foo with bar only on the 4th line)
+sed -i -- 's/OldString/NewString/g' *.log		(# replace string in all files ending *.log)
+sed -i -- 's/oldString/newString/g' * 			(# replace string all files in this directory only)
+sed -i 's/foo\(.*baz\)/bar\1/' file				(# Replace foo with bar only if there is a baz later on the same line)
+sed -i 's/NewString/OldString/g; s/LowOptions/Options/g'  file.log	(# replacing multiple lines with different strings)
+sed -Ei 's/Options|OldString/foobar/g'  stig.log	(# replace multiple strings with foobar)
+(# If you have a large number of patterns, it is easier to save your patterns and their replacements in a sed script file:)
+#! /usr/bin/sed -f
+s/foo/bar/g
+s/baz/zab/g
+(# Or, if you have too many pattern pairs for the above to be feasible, you can read pattern pairs from a file (two space separated patterns, $pattern and $replacement, per line):
+while read -r pattern replacement; do   
+    sed -i "s/$pattern/$replacement/" file
+done < patterns.txt
+(# That will be quite slow for long lists of patterns and large data files so you might want to read the patterns and create a sed script from them instead. The following assumes a <space> delimiter separates a list of MATCH<space>REPLACE pairs occurring one-per-line in the file patterns.txt :)
+sed 's| *\([^ ]*\) *\([^ ]*\).*|s/\1/\2/g|' <patterns.txt | sed -f- ./editfile >outfile
+
+${PERL}
+perl -i -pe 's/foo/bar/g; s/baz/zab/g; s/Alice/Joan/g' file
+perl -i -pe 's/foo|bar|baz/foobar/g' file		(# replace multiple strings with foobar)
+
+${Pattern Matching}
+Here is a table of regular expression operators and their effect :
+Operator	Effect
+.		Matches any single character.
+?		The preceding item is optional and will be matched, at most, once.
+*		The preceding item will be matched zero or more times.
++		The preceding item will be matched one or more times.
+{N}		The preceding item is matched exactly N times.
+{N,}	The preceding item is matched N or more times.
+{N,M}	The preceding item is matched at least N times, but not more than M times.
+-		represents the range if its not first or last in a list or the ending point of a range in a list.
+^		Matches the empty string at the beginning of a line; also represents the characters not in the range of a list.
+$		Matches the empty string at the end of a line.
+\b		Matches the empty string at the edge of a word.
+\B		Matches the empty string provided its not at the edge of a word.
+\<		Match the empty string at the beginning of word.
+\>		Match the empty string at the end of word.
+
+--- Table C-1. Basic SED operators ---
+Operator								Name		Effect
+[address-range]/p						print		Print [specified address range]
+[address-range]/d						delete		Delete [specified address range]
+s/pattern1/pattern2/					substitute	Substitute pattern2 for first instance of pattern1 in a line
+[address-range]/s/pattern1/pattern2/	substitute	Substitute pattern2 for first instance of pattern1 in a line, over address-range
+[address-range]/y/pattern1/pattern2/	transform	replace any character in pattern1 with the corresponding character in pattern2, over address-range (equivalent of tr)
+[address] i pattern Filename			insert		Insert pattern at address indicated in file Filename. Usually used with -i in-place option.
+g										global		Operate on every pattern match within each matched line of input
+
+--- Table C-2. Examples of SED operators ---
+Notation				Effect
+8d						Delete 8th line of input.
+/^$/d					Delete all blank lines.
+1,/^$/d					Delete from beginning of input up to, and including first blank line.
+/Jones/p				Print only lines containing "Jones" (with -n option).
+s/Windows/Linux/		Substitute "Linux" for first instance of "Windows" found in each input line.
+s/BSOD/stability/g		Substitute "stability" for every instance of "BSOD" found in each input line.
+s/ *$//					Delete all spaces at the end of every line.
+s/00*/0/g				Compress all consecutive sequences of zeroes into a single zero.
+echo "Working on it." | sed -e '1i How far are you along?'	Prints "How far are you along?" as first line, "Working on it" as second.
+5i 'Linux is great.' file.txt	Inserts 'Linux is great.' at line 5 of the file file.txt.
+/GUI/d					Delete all lines containing "GUI".
+s/GUI//g				Delete all instances of "GUI", leaving the remainder of each line intact.
+
+${Exit Code}
+$?
+
+
+${Installation and Package management}
+rpm -ga 										(# get all installed packages)
+rpm -qa --last									(# get all the installed packages on RHLE)
+rpm -q --changelog {package-name}
+rpm -q --changelog {package-name} | more
+rpm -q --changelog {package-name} | grep CVE-NUMBER
+rpm -q --changelog perl|grep CVE-2008-1927
+rpm -q --changelog * | grep CVE*
+rpm -ivh {package-name}							(# install a package)
+rpm -Uvh {package-name} 						(# to upgrade a given package)
+rpm -evv {package-name}							(# remove/erase RPM package)
+rpm -qf /usr/bin/htpasswd						(# Find this file belongs to which package)
+rpm -qi {package-name}							(# query an information of installed RPM package)
+rpm -qip {package-name}							(# query information of package before installing)
+rpm -qdf [package-name]							(# list available package documentation)
+rpm -Vp {package-name}							(# to verify rpm package)
+rpm -Va											(# to verify all RPM packages)
+rpm -q gpg-pubkey								(# to ensure gpg keys are installed)
+rpm -qpR {.rpm}									(# find what dependencies rpm package has)
+rpm -qR {package}								(# find what dependencies rpm package has)
+rpm --checksig {package}						(# This command checks the PGP signature of specified package to ensure its integrity and origin)
+How To rebuild Corrupted RPM Database
+
+${Networking}
+nmap -p 80 192.168.1.1                           (Scan port 80)
+nmap -p T:80 192.168.1.1                         (Scan TCP port 80)
+nmap -p U:53 192.168.1.1                         (Scan UDP port 53)
+nmap -sU -p <port> <IP address / host>			 (Scan UDP port)
+nmap -sT -p <port> <IP address / host>
+nmap 192.168.1.1-20
+nmap 192.168.1.*
+nmap 192.168.1.0/24
+nmap -A <IP address> or -v -A <IP>				 (In-depth details of host by turning on OS and version detection scanning)
+nmap -sA <IP address>							  (Find out if a host/network is protected by a firewall)
+nmap -PN <IP address> 							 (Scan a host when protected by the firewall, show all available ports)
+nmap --reason <IP>								  (Display the reason a port is in a particular state)
+nmap --open <IP>								  (Only show open (or possibly open) ports)
+nmap --packet-trace <IP>						 (Show all packets sent and received)
+nmap --iflist <IP>								 (Show host interfaces and routes)
+nmap -v -O --osscan-guess <IP>					 (How do I detect remote operating system?)
+nmap -sV <IP>									 (How to detect remote services version numbers)
+nmap -PA <IP>	or -PS or -PO or -PU			 (firewall is blocking standard ICMP pings, Scan a host using TCP ACK (PA) and TCP Syn (PS) ping)
+nmap -sU <IP>									 (Scan a host for UDP services (UDP scan))
+nmap -sO <IP>									 (Scan for IP protocol, determine which IP protocols (TCP, ICMP, IGMP, etc.) are supported by target)
+nmap -sN <IP> or -sF or -sX					 (Scan a firewall for a security weekness)
+
+${Network Connections}
+netstat -tulpn | grep 80							(check applications listening on port 80)
+netstat -n --inet									(check the privileged ports status)
+ss 												(socket statistics and communication connections)
+ss -t
+ss -a -A udp
+ss -ltn
+watch
+Nload, iftop, iptraf, nethogs, bmon, slurm, tcptrack, Vnstat, cbm, speedometer, Pktstat, Netwatch, Trafshow,Netload, ifstat(Network bandwidth monitor)
+tcpdump -i eth0 | grep ssh 						(Network bandwidth and traffic monitor)
+
+${Firewall}
+iptables --line-numbers -n -L
+iptables -L -n -v | grep 25032
+chkconfig iptables on
+service iptables start
+
+${Disk}
+partprobe /dev/sdb
+fdisk -l /dev/sdc
+kpartx
+mkfs -t ext4 /dev/sdc1
+mkswap /dev/sdd1
+swapon -va /dev/sdd1
+patx -a /dev/sdd
+partprobe -s
+mount
+mount -t cifs //pcifs01/AssocAccessPortalFolder$/am028787/Downloads /usr/tideway/tmp
+mount -t cifs -o username=****,password=***** //pcifs01/AssocAccessPortalFolder$/am028787/Downloads /usr/tideway/tmp
+
+dd
+dd if=/dev/sda of=/tmp/mbrsda.bak bs=512 count=1 	(# copy MBR from /dev/sda to mbrsda.bak file)
+dd if=/tmp/mbrsda.bak of=/dev/sdb bs=446 count=1 	(# restore MBR to /dev/sdb)
+du -hs logs/
+du -h /usr/tideway | sort -n -r | head -n 10F
+du -ah /usr , du -ah /mnt/addm/db_data 				(# folder size used)
+df -h /usr , df -h /mnt/addm/db_data  				(# folder size total)
+tune2fs -l /dev/sda1 								(# gives raw information on disk)
+badblocks -v /dev/sdb1
+fsck
+lsblk
+blkid
+sfdisk -l
+cfdisk
+parted
+
+ls -ltr | sort -n -k 5
+ps auxw
+ps auxw | grep model/main.py
+ps -e -o pid,args --forest
+pstree
+md5sum file_name	(use the “ md5sum -c” option to check against a given file (often with a “.asc” extention) to check whether the various files are correct)
+
+${Permission, ownership}
+chown tideway:tideway etc
+chmod 750 etc
+chown tideway:tideway twcfg.txt twpol.txt
+chmod 640 twcfg.txt twpol.txt
+getfacl				(# itemize the output by permission, owner etc)
+getfacl /etc/passwd
+stat /etc/passwd	(# show detials of every possible settings on a file)
+
+alias (~/.bashrc file for root, unhide this file by command ls -a in ~ folder, http://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html)
+alias cls='echo -e "\033c"'
+alias cls='printf "\033c"'
+unalias aliasname 						(# to remove the alias from ~/bashrc)
+
+${Processor Information is incorrect}
+cat /proc/cpuinfo
+lscpu 
+grep -C processor /proc/cpuinfo 
+psrinfo -v 								(# Solaris from /proc/cpuinfo)
+dmidecode 
+
+${login information}
+check login history (/var/log/wtmp and /var/log/lastlog file to save login history)
+last | more
+last | head -10 							(#check last 10 logs)
+last <user name> 						(#check particular user)
+lastlog | grep Never | awk '{print $1}' 	(#To generate a list of all the accounts that have never been logged into, use a command like this)
+od -xc /var/log/lastlog | more 		(#check last login sessions)
+lastlog -b 30 (/var/log/lastlog)
+
+w -uhu 							(#get running processes of logged in user)
+who 							(#get user and processes of logged in user )
+users 							(#currently logged in user)
+whoami 							(#get named you are logged in)
+who am i 						(#get name you logged in with details)
+ls /home/ 						(#it will give manually created users directories)
+
+${Create an account}
+useradd -m -G tideway -s /bin/bash <NEWUSER>
+passwd <NEWUSER> 					(#give temporary password)
+usermod -L <NEWUSER> 				(#lock out user for next login)
+chage -d 0 <NewUser> 				(#To force user to change password at first time login)
+usermod -U <NEWUSER>				(#unlock user account)
+chage -l <UserName>					(# check the user aging information, such as expire date, time etc)
+chage -I -1 -m 0 -M 99999 -E -1 username
+userdel -r username					(# delete user and his home directory)
+deluser –remove-all-files username	(# Delete user account & his home directory, personal files located in different locations which you are not aware.)
+deluser –backup-to DIR username		(# Delete user account and take backup of his files to a directory for future use by the company)
+deluser –backup-to /var/backup don	(# I want to delete user account Don and take backup of all his files to /var/backup)
+grep somestring /etc/group
+grep somestring /etc/shadow
+grep somestring /etc/gshadow
+grep somestring /etc/passwd
+awk -F':' '{ print $1}' /etc/passwd | column 	(# List all user accounts in the system)
+
+${SSH access}
+add following to file /etc/ssh/sshd_config (giving root a SSH access)
+PermitRootLogin yes
+AllowUsers root
+
+${Audit Linux files}
+(auditctl) 			(# a command to assist controlling the kernel’s audit system. You can get status, and add or delete rules into kernel audit system. Setting a watch on a file is accomplished using this command)
+(ausearch) 			(# a command that can query the audit daemon logs based for events based on different search criteria)
+(aureport)			(# a tool that produces summary reports of the audit system logs)
+auditd				(# RHLE built-in audit service, 
+	chkconfig --list auditd 
+	service auditd status 
+	chkconfig auditd on 
+	service auditd start
+	grep num_logs /etc/audit/auditd.conf
+		The num_logs should me equal to 5, num_logs = [NUMLOGS] and max_log_file = 6 
+	grep max_log_file_action /etc/audit/auditd.conf
+		max_log_file_action = [ACTION], max_log_file_action "rotate" 
+	grep EACCES /etc/audit/audit.rules 
+	grep EPERM /etc/audit/audit.rules
+	auditctl -l | grep syscall | grep mount			(#to check file mount enabled or disable)
+	auditctl -l | grep syscall | grep -w unlink		(#to check file deletion enabled)
+	auditctl -l | grep syscall | grep -w unlink		(#to check renaming the files)
+	auditctl -l | grep "watch=/etc/sudoers"			(#to check audit is configure for system adminitrator actions)
+		-w /etc/sudoers -p wa -k actions add to /etc/audit/audit.rules
+	auditctl -l | grep syscall | grep init_module	(#to check loading and unloading module activities)
+	grep active /etc/audisp/plugins.d/syslog.conf, If the "active" setting is missing or set to "no", then set it to yes. (forward logs to syslog service)
+	/etc/grub.conf		If they include "audit=1", then auditing is enabled at boot time
+		kernel /vmlinuz-version ro vga=ext root=/dev/VolGroup00/LogVol00 rhgb quiet audit=1
+
+# Common Linux log files names and usage
+
+/var/log/messages : General message and system related stuff
+/var/log/auth.log : Authenication logs
+/var/log/kern.log : Kernel logs
+/var/log/cron.log : Crond logs (cron job)
+/var/log/maillog : Mail server logs
+/var/log/qmail/ : Qmail log directory (more files inside this directory)
+/var/log/httpd/ : Apache access and error logs directory
+/var/log/lighttpd/ : Lighttpd access and error logs directory
+/var/log/boot.log : System boot log
+/var/log/mysqld.log : MySQL database server log file
+/var/log/secure or /var/log/auth.log : Authentication log
+/var/log/utmp or /var/log/wtmp : Login records file
+/var/log/yum.log : Yum command log file.
+
+${Tripwire}
+folder:- /usr/tideway/tripwire
+./tripwire-check 					(#check what files are changed on ADDM appliance through tripwire /usr/tideway/tripwire/etc)
+./twadmin	(--print-profile)
+./tripwire
+./siggen
+./twprint   (./twprint -m r|--print-report -twrfile /usr/tideway/var/tripwire/report/ADDMCONCRTLS01-20160218-205502.twr > /usr/tideway/tripwire)
+./tripwire-setup-keyfiles
+
+${MAIL}
+mail --help
+/etc/postfix
+vi main.cf
+	relayhost=[mail.server.com]:port
+	smtp_sasl_auth_enable=yes
+	smtp_sasl_password_maps=hash:/etc/postfix/sasl_passwd
+	smtp_sasl_security_options=noanonymous
+	smtp_tls_CAfile=/etc/ssl/certs/ca-certificates.crt
+	smtp_use_tls=yes
+vi sasl_passwd (create a password file if needed by adding [smtp.server.com]:port email@server.com:password)
+	postmap hash:/etc/postfix/sasl_passwd
+	chown root:root /etc/postfix/sasl_passwd
+	chmod 600 /etc/postfix/sasl_passwd
+	cat /etc/ssl/certs/Thawte_Premimum_Server_CA.pem | sudo tee -a /etc/postfix/cacert.pem
+	/etc/init.d/postfix reload
+
+echo "Test mail from addmCONcrtLS01" mail -s "Test mail" aamir.mukhtar@example.com
+
+${Rooting Linux}
+Each process/command on Linux and Unix-like system has current working directory called root directory of a process/command. You can change the root directory of a command using chroot command, which ends up changing the root directory for both current running process and its children.
+
+chroot
+
+${Editors}
+vi								(# command mode, insert mode)
+	:set number					(# set line numbers)
+	:set fileformat=unix 		(# file is non unix, run this if get error M^)
+	:w
+	:q or q!
+	:dd			(delete lines) - e.g., 2dd delete 2 lines
+	:D			(delete single line)
+	:dw			(delete a word)
+	:x			(delete a character)
+	:i			(insert)
+	:a			(append)
+	:u			(undo)
+	:/<search word> case sensitive
+	:zz			(save file and quit)
+	:split		(multiple files and screens)
+nano
+^g or ^G		(help)
+
+
+${OpenSSL and Httpd}
+openssl ciphers $ {cipherspec} 								(# will give all the Ciphers could run on the server)
+openssl ciphers $ {cipherspec} | sed 's/:/\n/g' | grep CBC  	(# Give a list of all Ciphers being used by CBC)
+grep -i -r "RC4" /etc/httpd  								(# gives all RC4 related or CBC)
+grep -i -r "CBC" /etc/httpd  								(# gives all CBC related strings)
+openssl ciphers -V  											(# to check all the available ciphers in openssl)
+openssl s_client -crlf -connect addmCONcrtLS01:443 			(# Test HTTPS encryption and certificates chain, supported protocol)
+openssl ciphers -v | column -t | grep ECDHE-RSA-AES128-GCM-SHA256
+openssl s_client -connect addmCONcrtLS01:443 -tls1 			(# to find out if system supports TLS1, for other check use “-tls1_1 or -tls1_2”)
+nmap --script ssl-enum-ciphers -p 443 addmCONcrtLS01  		(# Check and give the list of all supported ciphers)
+netstat -tpan | grep 443 										(# to check if server is listening at port 443)
+
+httpd -v													(# to check the apache version)
+httpd2 -v													(# to check the version of the apache
+httpd –M 													(# To get the apache loaded modules)
 
 ${PowerShell}
 ps> get-hotfix
