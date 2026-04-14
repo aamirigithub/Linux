@@ -465,6 +465,7 @@ Emergency Mode
 Single User Mode
 Labs
 Close
+
 ${LFCE}
 Network administration
 
@@ -732,7 +733,7 @@ mkfs.minix                      zramctl
  }
 
  
-${File and Edit}
+${------File and Edit-----}
 What is "command /dev/null 2>&1 means" --> any output of command will go to null STDOUT box and error to STDERR box 
 > redirect the program’s output somewhere (In this case, something is being redirected into /dev/null)
 Standard in, out and err are buit-in numbered 0, 1, and 2 in Linux / STDIN=0, STDOUT=1, STDERR=2
@@ -784,10 +785,11 @@ ls -l                                                         # List view
 ls -lt                                                         # List order by date
 ls -ltr                                                 # List in reverse order by date
 
-hostname                                                # to find the host name
-hostname -I                                        # To find the name or IP related to local host                                        
-ypdomainname                                        # to find the domain name
-hostid                                                        # unique id assigned to host
+hostname                                                # to find the hostname
+hostname -I                                             # To find the name or IP address related to the local host                                        
+ypdomainname                                            # to find the domain name
+hostid                                                  # unique ID assigned to host
+cat /etc/os-release                                     # Linux OS version
 
 rm <filename>                                        # will delete a file with root privileges 
 rm -rf *                                                # remove all files & directories in current folder without prompting
